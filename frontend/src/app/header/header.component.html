@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default" >
+    <div class="container-fluid">
+        <div class="navbar-header" routerLink="/" style="cursor: pointer" class="navbar-brand">
+            EverGreen 
+        </div>
+        <div class="nav-items navbar-nav">
+            <ul 
+            class="nav navbar-nav nav-items">
+
+                <li 
+                (mouseover)="onCategoryHighlight(category.name)" 
+                (mouseleave)="onCategoryHighlightLeave()" 
+                *ngFor="let category of siteCategories" 
+                [category]="category" class="nav-item" 
+                style="cursor: pointer">
+
+                    <div class="wrapper" >
+
+                        <div
+                        *ngIf="category.fathers.length == 0"  
+                        class="main-cat" 
+                        routerLinkActive="active" 
+                        routerLink="/category/{{category.name}}"
+                        
+                         >
+                        {{category.name}}
+                        </div>
+
+                        <ng-container *ngIf="category.childrens.length > 0 && categoryHighlighted == category.name">
+                            <div class="wrapper-childrens">
+                        <div class="cat-childrens" 
+                        *ngFor="let children of category.childrens"
+                        routerLink="/category/{{children.name}}" >
+                         {{children.name}} 
+                        </div>
+                    </div>
+                        </ng-container>
+
+                    </div>
+                </li>
+                
+                <li routerLink="/cart" style="cursor: pointer" >Cart</li>
+                <li *ngIf="!isAuth" routerLink="/auth" style="cursor: pointer" >Login</li>
+                <li *ngIf="isAuth" routerLink="/auth" (click)="onLogout()" style="cursor: pointer" >Logout</li>
+                <li *ngIf="isAuth" routerLink="/edit" style="cursor: pointer" >Edit Site</li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>

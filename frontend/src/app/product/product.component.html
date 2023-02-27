@@ -1,0 +1,22 @@
+<div class="a">
+    
+    <div class="card" [ngClass]="hovered" (mouseover)="hovered = 'hovered' " 
+    (mouseleave)="hovered=''" style="width: 180px;">
+        <div class="img-wrapper">
+        <img *ngIf="product.photoUrl.length <= 0" class="card-img-top" src="{{product.photoUrl}}">
+        <img *ngIf="product.photoUrl.length > 0" class="card-img-top" src="{{product.photoUrl[0]}}">
+        <button 
+        class="btn btn-success"
+        [ngClass]="btnHovered" 
+        (mouseover)="btnHovered = 'btn-hovered'" 
+        (mouseleave)="btnHovered = ''"
+        (click)="onBuyNow()"
+        >Buy Now</button>
+        </div>
+        <div class="card-body">
+            <div class="card-title">{{product.name}}</div>
+        </div>
+        <div class="card-footer" style="text-align: center;" >{{product.price}}₪</div>
+        </div>
+    
+</div>

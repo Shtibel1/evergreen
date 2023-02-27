@@ -1,0 +1,16 @@
+.line-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: .5rem;
+}
+
+.line-wrapper > div {
+    margin: .3rem;
+}
+
+@media screen and (max-width: 768px) {
+    .line-wrapper {
+        
+        gap: 0rem;
+    }
+}

@@ -1,0 +1,43 @@
+.wrapper {
+    
+    display: flex;
+    height: max(calc(100%), calc(100vh - 56px));
+}
+
+.side-bar {
+    display: flex;
+    min-width: 160px;
+    width: 170px;
+    background-color: hwb(210 27% 65%);
+    margin-right: .5rem;
+    justify-content: center;
+    padding: 1rem 0;
+    
+}
+
+.bar {
+    margin: 0;
+    list-style: none;
+    padding-top: 1rem;
+    padding-left: 0;
+    height: max(calc(100%), calc(100vh - 56.5px));
+    width: 100%;
+    background-color: hwb(210 27% 65%);
+
+}
+
+.bar > li {
+    color: white;
+    /* font-weight: bold; */
+    cursor: pointer;
+    padding: 0.5rem;
+    
+}
+
+.active {
+    font-weight: bolder;
+}
+
+.bar > li:hover {
+    color: azure;
+}

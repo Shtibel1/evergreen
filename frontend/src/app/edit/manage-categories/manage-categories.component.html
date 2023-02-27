@@ -1,0 +1,10 @@
+<h2>manage categories</h2>
+
+<div class="col">
+    <div class="line-wrapper" *ngFor="let category of categories">
+        <div class="category-name"> {{category.name}} </div>
+        <div class="type">  </div>
+        <div class="edit"><button class="btn btn-default">Edit</button></div>
+        <div class="delete"><button (click)="onDelete(category)" class="btn btn-danger">Delete</button></div>
+    </div>
+</div>

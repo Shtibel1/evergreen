@@ -1,0 +1,43 @@
+.product-wrapper {
+    display: flex;
+}
+
+.a {
+    width: 20%;
+}
+:host {
+    display: inline
+}
+
+
+
+
+
+.img-wrapper > button {
+    position: absolute;
+    opacity: 0;
+    top: 30%; right: 55%;
+    transform: translate(50% , -50%);
+    transition: all .25s;
+    font-size: .8rem;
+}
+
+.btn-hovered {
+
+}
+
+.hovered button{
+    display: flex;
+    opacity: 1;
+    z-index: 10;
+    top: 30%; right: 50%;
+    transform: translate(50% , -50%);
+    position: absolute;
+}
+
+.hovered::after {
+    content: '';
+    background-color: rgba(255, 255, 255, .3);
+    height: 100%; width: 100%;
+    position: absolute;
+}

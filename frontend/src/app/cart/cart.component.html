@@ -1,0 +1,27 @@
+
+
+<div class="cart">
+    <h1>Your Cart</h1>
+    <div class="table-wrapper">
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+        </tr>
+        <tr *ngFor="let product of cartProducts">
+            <td>{{product.product.name}}</td>
+            <td>{{product.product.price}}₪</td>
+            <td>{{product.amount}}</td>
+            <td>{{product.product.price * product.amount}}₪</td>
+ 
+        </tr>
+        <tr>
+            <td colspan="3">Total</td>
+            <td style="font-weight: bold;" >{{total}}₪</td>
+        </tr>
+    </table>
+    <button>Checkout</button>
+</div>
+</div>

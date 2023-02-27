@@ -1,0 +1,21 @@
+<h3>Add Category</h3>
+<br><br>
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" required ngModel name="name">
+    <br>
+    <label for="father">Father Category (optional)</label><br>
+    <select class="form-select" name="father" ngModel>
+        <option></option>
+        <ng-container *ngFor="let category of categories" >
+          <option 
+          *ngIf="category.fathers.length == 0"
+        >   {{category.name}} 
+        </option>
+      </ng-container>
+      </select>
+    <br>
+    <button type="submit" class="btn btn-success" [disabled]="f.invalid">submit</button>
+    <br>
+    <p>{{msg}}</p>
+</form>

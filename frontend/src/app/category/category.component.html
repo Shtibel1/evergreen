@@ -1,0 +1,30 @@
+
+
+
+<div class="wrapper">
+    <div class="sorts-wrapper"> 
+        <h6>Sort By</h6>
+        <div class="sort-by-price-wrapper">
+            <label class="sort-by-price-biggest-to-smallest">Price: </label>
+            <input  [(ngModel)]="min" type="number"> - 
+            <input  [(ngModel)]="max" type="number">
+            <button class="" (click)="onSortPrice()">OK</button>
+            
+        </div>
+        
+        <button id="reset" (click)="onResetSortPrice()">Reset</button>
+    </div>
+    <div class=""><h1 class="container">{{category}}</h1>
+    <div *ngIf="!sortMode"  class="" >
+    <div   class="product-wrapper" *ngFor="let product of categoryProducts; let i = index">
+        <a (click)="onProduct(product)" style="cursor: pointer;" ><app-product class="a" [product]="product" ></app-product></a>
+    </div>
+    </div>
+
+        <div *ngIf="sortMode"  class="" >
+        <div   class="product-wrapper" *ngFor="let product of sortedProducts; let i = index">
+            <a (click)="onProduct(product)" style="cursor: pointer;" ><app-product class="a" [product]="product" ></app-product></a>
+        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="main-header">
+    <h2>Manage Producs</h2>
+
+</div>
+
+<div class="search-container">
+    <form>
+      <input type="text"  placeholder="Search..." #i (input)="onSearch()">
+      <button type="submit" class="">Go</button>
+
+    </form>
+  </div>
+<br>
+
+<div *ngFor="let product of products" class="products" (click)="onProduct(product)">
+    <app-product  *ngIf="product.name.includes(i.value)" [product]="product" ></app-product>
+</div>
+
+

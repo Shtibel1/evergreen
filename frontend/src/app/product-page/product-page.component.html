@@ -1,0 +1,39 @@
+<br>
+<div class="wrapper container">
+    <div class="img-wrapper">
+    <div class="img-container" *ngIf="product.photoUrl.length <= 0">
+        <img src="{{product.photoUrl}}" alt="">
+    </div>
+    <ng-container  *ngIf="product.photoUrl.length > 0">
+        <img src="{{product.photoUrl[smallImg]}}" alt="" class="img-container">
+        <div class="small-imgs-container" >
+            <div class="small-img-container" *ngFor="let photo of product.photoUrl; let i = index" (click)="onSmallImg(i)">
+            <img 
+            *ngIf="i > 0" 
+            
+            src="{{product.photoUrl[i]}}" alt=""
+            class="photo photo-{{i}}">
+            </div>
+        </div>
+    </ng-container>
+    </div>
+    <div class="product-details">
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+        <p> {{product.price}}₪ </p>
+
+        <div class="buttons-wrapper">
+            <button (click)="onBuyNow()" class="btn btn-success">Buy Now</button>
+            <button (click)="onAddtoCart()" class="btn btn-outline-success">Add to Cart</button>
+            <div class="amount-wrapper">
+                <label  for="amount">amount</label>
+                <input #amount type="number" value="1" class="amount">
+            </div>
+        </div>
+        <div *ngIf="msg" class="">{{msg}}</div>
+        <div *ngIf="addedToCart" class="">Added to cart!</div>
+    </div>
+</div>
+
+
+
