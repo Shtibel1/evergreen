@@ -55,7 +55,8 @@ export class AuthService {
 
     autoLogin(){
         const token = localStorage.getItem('token')
-        if (!token) return
+        if (!token) return;
+        // add validator to the token
         const loadedUser = token
         this.user.next(token)
         // add exp date

@@ -16,11 +16,12 @@ import { CartProductComponent } from './cart/cart-product/cart-product.component
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { ProductsResolverService } from './category/products-resolver.service';
+import { ProductsResolverService } from './resolvers/products-resolver.service';
 
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { EditModule } from './edit/edit.module';
 import { SharedModule } from './shared.module';
+import { ProductResolverService } from './resolvers/product-resolver.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SharedModule } from './shared.module';
     ProductService, 
     CategoryService, 
     ProductsResolverService, 
+    ProductResolverService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]

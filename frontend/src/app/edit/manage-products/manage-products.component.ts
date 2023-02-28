@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
@@ -6,7 +6,8 @@ import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-manage-products',
   templateUrl: './manage-products.component.html',
-  styleUrls: ['./manage-products.component.css']
+  styleUrls: ['./manage-products.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ManageProductsComponent implements OnInit {
   products: Product[] = []

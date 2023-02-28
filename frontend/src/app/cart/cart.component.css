@@ -22,19 +22,18 @@ h1 {
 	box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-table {
-	width: 100%;
-	/* border-collapse: collapse; */
-	
+.table-headers {
+	display: flex;
+	justify-content: space-around;
 }
 
-table th, table td{
+.table-wrapper th, .table-wrapper td{
 	padding: 10px;
 	text-align: left;
 
 } 
 
-table th:first-child {
+.table-wrapper:first-child {
 	border-top-left-radius: 10px;
 }
 
@@ -42,11 +41,11 @@ table th:last-child {
 	border-top-right-radius: 10px;
 }
 
-table th {
+.table-wrapper th {
 	background-color: #f2f2f2;
 }
 
-table tr:nth-child(even) {
+.table-wrapper tr:nth-child(even) {
 	background-color: #f2f2f2;
 }
 

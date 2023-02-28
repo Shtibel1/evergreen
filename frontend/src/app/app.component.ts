@@ -25,4 +25,9 @@ export class AppComponent implements OnInit{
     this.cartService.getCartProducts()
   }
 
+  onDetect() {
+    // console.log('on detect');
+    // return 'onDetect'
+  }
+
 }

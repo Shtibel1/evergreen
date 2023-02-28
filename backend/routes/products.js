@@ -10,9 +10,14 @@ const Visitor = require('../models/visitor')
 
 router.get('/', async (req, res) => {
     try {
-        if (!req.query.category) {
+        if (!req.query.category && !req.query.id) {
             const products = await Product.find({})
             return res.send(products)
+        }
+
+        if (req.query.id) {
+            const product = await Product.findById(req.query.id)
+            return res.send(product)
         }
 
         let category = await Category.findOne({name: req.query.category})

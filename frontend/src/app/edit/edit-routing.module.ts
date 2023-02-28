@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../auth/auth.guard";
-import { ProductsResolverService } from "../category/products-resolver.service";
+import { ProductsResolverService } from "../resolvers/products-resolver.service";
 import { AddCategoryComponent } from "./add-category/add-category.component";
 import { AddProductComponent } from "./add-product/add-product.component";
 import { EditComponent } from "./edit.component";

@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
 import { CartProduct, CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartComponent implements OnInit {
   cartProducts: CartProduct[];
@@ -18,7 +19,12 @@ export class CartComponent implements OnInit {
       this.cartProducts.forEach(cartProduct => {
         this.total += cartProduct.product.price * cartProduct.amount
       })
+
      
+  }
+
+  onDetect() {
+    console.log('cart detect');
   }
 
 }

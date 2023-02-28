@@ -10,6 +10,7 @@ const Visitor = require('../models/visitor')
 
 router.get('/', async (req, res) => {
     try {
+        
         const categories = await Category.find({})
         res.json(categories)
 
@@ -38,7 +39,8 @@ router.post('/', auth, async (req, res) => {
         }
 
         await newCategory.save()
-        res.json({message: newCategory.name + ' saved succeessfully'})
+        const categories = await Category.find({})
+        res.json({message: newCategory.name + ' saved succeessfully', categories})
 
     } catch(e) {
         console.log(e)
@@ -46,17 +48,18 @@ router.post('/', auth, async (req, res) => {
 })
 
 router.delete('/', auth, async (req, res) => {
+    console.log(req.query);
     try {
         
-        await Category.deleteOne({'name': req.body.name}); 
+        await Category.deleteOne({'name': req.query.name}); 
         const categories = await Category.find({});
         for (let i = 0; i < categories.length; i++) {
             for (let j = 0; j < categories[i].childrens.length; j++) {
-                if (categories[i].childrens[j].name === req.body.name)
+                if (categories[i].childrens[j].name === req.query.name)
                 categories[i].childrens.splice(j, 1)
             }
         }
-        res.json({message: req.body.name + ' deleted succeessfully'})
+        res.json({message: req.query.name + ' deleted succeessfully'})
 
     } catch(e) {
         console.log(e)

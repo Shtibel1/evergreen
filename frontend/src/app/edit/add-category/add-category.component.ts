@@ -1,18 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css']
+  styleUrls: ['./add-category.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddCategoryComponent implements OnInit {
+export class AddCategoryComponent implements OnInit, OnDestroy {
   @ViewChild('f') addCategoryForm: NgForm
   categories: Category[]
   msg: string = null
+  subscription: Subscription
 
   constructor(
     private http: HttpClient,
@@ -20,8 +23,10 @@ export class AddCategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categories = this.categoryService.getCegories();
-    console.log(this.categories);
+    this.subscription =this.categoryService.categories.subscribe(res => {
+      this.categories = res
+    })
+
   }
 
   onSubmit() {
@@ -31,7 +36,14 @@ export class AddCategoryComponent implements OnInit {
     }, err => {
       this.msg = err.message
     })
-    this.categoryService.getCegories();
     this.addCategoryForm.reset()
+  }
+
+  onDet() {
+    console.log('det add-category');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 }

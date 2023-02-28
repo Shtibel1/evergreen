@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/product.model';
@@ -8,7 +8,8 @@ import { ProductService } from '../../services/product.service';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['./add-product.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddProductComponent implements OnInit {
   categories = []
@@ -21,6 +22,7 @@ export class AddProductComponent implements OnInit {
      private categoryService: CategoryService,
      private route: ActivatedRoute,
      private productService: ProductService,
+     private cd: ChangeDetectorRef
      ) {
     
    }
@@ -50,15 +52,13 @@ export class AddProductComponent implements OnInit {
     
     })
       
-    
-
-    this.categories = this.categoryService.getCegories()
+      this.categories = this.categoryService.getCegories()
 
   }
 
 
   getPhotos() {
-    return (<FormArray>this.addProductForm.get('photoUrl')).controls
+    return (this.addProductForm.get('photoUrl') as FormArray).controls
   }
 
   onAddPhoto() {
@@ -94,6 +94,10 @@ export class AddProductComponent implements OnInit {
       console.log(res);
       this.resMessage = res.message
     }) 
+  }
+
+  onDet() {
+    console.log('det add-product');
   }
 
 }

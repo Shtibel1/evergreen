@@ -26,6 +26,7 @@ export class ProductPageComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
       this.product = this.products.getProductById(this.id)
+      console.log(this.product);
     })
 
     
@@ -47,6 +48,10 @@ export class ProductPageComponent implements OnInit {
 
   onSmallImg(i: number) {
     this.smallImg = i
+  }
+
+  onDetect() {
+    console.log('detect');
   }
 
 }

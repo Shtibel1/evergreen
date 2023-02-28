@@ -3,7 +3,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { ProductsResolverService } from "../category/products-resolver.service";
+import { ProductsResolverService } from "../resolvers/products-resolver.service";
 import { ProductComponent } from "../product/product.component";
 import { ProductService } from "../services/product.service";
 import { SharedModule } from "../shared.module";

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../models/product.model";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { exhaustMap, take, tap } from "rxjs";
+import { BehaviorSubject, exhaustMap, take, tap } from "rxjs";
 import { AuthService } from "../auth/auth.service";
 import { Token } from "@angular/compiler";
 
@@ -9,12 +9,13 @@ import { Token } from "@angular/compiler";
 
 export class ProductService {
     
+    public products: Product[] = []
+    // public products = new BehaviorSubject<products[]>
 
     constructor(
         private http: HttpClient,
         private authService: AuthService){}
 
-    public products: Product[] = []
     
     fetchProducts() {
         this.products = []
@@ -35,7 +36,13 @@ export class ProductService {
         
     }
    
-    
+    fetchProduct(id: string) {
+        return this.http.get<Product>('http://localhost:3000/products?id=' + id).pipe(
+            tap(res => {
+                this.products.push(res)
+            })
+        )
+    }
 
      
 
@@ -51,7 +58,18 @@ export class ProductService {
     }
 
     getProductById(id: string) {
-        return this.products.find(product => product._id == id );     
+        console.log(id);
+        console.log(this.products);
+        let selectedProduct = this.products.find(product => product._id == id );    
+        console.log(selectedProduct); 
+        if (selectedProduct) return selectedProduct
+        
+        this.fetchProduct(id).subscribe(res => {
+            console.log(res);
+            return res
+        })
+        
+        
     }
 
     

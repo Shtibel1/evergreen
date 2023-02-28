@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router'
 import { AuthComponent } from "./auth/auth.component";
 import { CartComponent } from "./cart/cart.component";
 import { CategoryComponent } from "./category/category.component";
-import { ProductsResolverService } from "./category/products-resolver.service";
+import { ProductsResolverService } from "./resolvers/products-resolver.service";
 import { EditModule } from "./edit/edit.module";
 
 import { ProductPageComponent } from "./product-page/product-page.component";
+import { ProductResolverService } from "./resolvers/product-resolver.service";
 
 const appRoutes: Routes = [
   { path:'', redirectTo:'category/sheds' , pathMatch:'full'},
@@ -17,8 +18,8 @@ const appRoutes: Routes = [
   { path: 'auth', component:AuthComponent},
   
   
-  { path:'category/:category-name', component:CategoryComponent, resolve:[ProductsResolverService]},
-  { path: 'category/:category-name/:id', component:ProductPageComponent, resolve:[ProductsResolverService]},
+  { path:'category/:category-name', component:CategoryComponent},
+  { path: 'category/:category-name/:id', component:ProductPageComponent, resolve:[ProductResolverService]},
   
   
 ]
